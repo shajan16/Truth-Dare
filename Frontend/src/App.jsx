@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import SpinWheel from "./components/SpinWheel";
 import Private from "./components/private";
 
-const socket = io("http://localhost:4000");
+const socket = io("https://truth-dare-server-hi2i.onrender.com");
 
 export default function App() {
   const [room, setRoom] = useState("");
