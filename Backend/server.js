@@ -109,11 +109,6 @@ const truth = [
   "If you were invisible, what would you do?"
 ];
 
-const randomdareIndex = Math.floor(Math.random() * dare.length);
-const singledare = dare[randomdareIndex];
-
-const randomtruthIndex = Math.floor(Math.random() * truth.length);
-const singletruth = truth[randomtruthIndex];
 
 const app = express();
 const server = http.createServer(app);
@@ -167,11 +162,15 @@ io.on("connection", (socket) => {
 
     
     const isTruth = Math.random() > 0.5;
+    const randomdareIndex = Math.floor(Math.random() * dare.length);
+    const singledare = dare[randomdareIndex];
+    const randomtruthIndex = Math.floor(Math.random() * truth.length);
+    const singletruth = truth[randomtruthIndex];
     const question = isTruth ? singletruth : singledare;
     
     const index = Math.floor(Math.random() * segments.length);
     const stopAngle = 360 - (index * segmentAngle) - (segmentAngle / 2);
-   const spinAngle = 360 * 5 + stopAngle;
+    const spinAngle = 360 * 5 + stopAngle;
 
 
     const result = { type: isTruth ? "Truth" : "Dare", question, player, angle: spinAngle };
@@ -206,7 +205,9 @@ io.on("connection", (socket) => {
   const msgData = {
     name,
     message,
-    time: new Date().toLocaleTimeString()
+    time: new Date().toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata"
+  })
   };
 
   io.to(room).emit("receive_message", msgData);
