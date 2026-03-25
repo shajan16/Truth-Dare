@@ -104,11 +104,11 @@ useEffect(() => {
           🎮 TRUTH OR DARE
         </h1>
         <div className="backdrop-blur-xl bg-white/10 p-8 rounded-3xl flex flex-col gap-10 w-[80%] md:w-[30%]">
-          <input className="flex-1 px-4 py-2 rounded-lg bg-white/20 outline-none" placeholder="Name" onChange={e => setName(e.target.value)} />
-          <input className="flex-1 px-4 py-2 rounded-lg bg-white/20 outline-none" placeholder="Room" onChange={e => setRoom(e.target.value)} />
+          <input className="flex-1 px-4 py-2 rounded-lg bg-white/20 outline-none" placeholder="Name:" onChange={e => setName(e.target.value)} />
+          <input className="flex-1 px-4 py-2 rounded-lg bg-white/20 outline-none" placeholder="Room:" type="number" onChange={e => setRoom(e.target.value)} />
           <select className="flex-1 px-4 py-2 rounded-lg bg-white/20 outline-none" onChange={e => setAvatar(e.target.value)}>
             <option value="">Avatar</option>
-            <option>🦸🏻‍♂️</option> <option>🧛‍♀️</option> <option>😈</option> <option>👻</option> <option>🦋</option>
+            <option>🦸🏻‍♂️</option> <option>🧛‍♀️</option> <option>😈</option> <option>👻</option> <option>💗</option>
           </select>
           <div className="justify-center flex"> 
           <button
@@ -133,7 +133,7 @@ useEffect(() => {
   }
 
   // Private
-  if (name==="shajanreesvi" && room === "1620") {
+  if (name==="shajanreesvi" && room === "1620" && avatar === "💗") {
   return(
     <Private/>
   )
