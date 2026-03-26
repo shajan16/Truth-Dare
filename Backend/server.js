@@ -138,8 +138,11 @@ const io = new Server(server, { cors: { origin: "*" } });
 let rooms = {};
 
 io.on("connection", (socket) => {
+  
   socket.on("join_room", async ({ room, name, avatar }) => {
     socket.join(room);
+
+    socket.room = room;
 
     if (!rooms[room]) {
       rooms[room] = { players: [], turn: 0, history: [] };
@@ -196,6 +199,24 @@ io.on("connection", (socket) => {
 
     io.to(room).emit("update", game);
   });
+
+  socket.on("disconnect", () => {
+
+  const room = socket.room;
+
+  if (!room || !rooms[room]) return;
+
+  rooms[room].players = rooms[room].players.filter(
+    player => player.id !== socket.id
+  );
+
+  if (rooms[room].players.length === 0) {
+    delete rooms[room];
+  } else {
+    io.to(room).emit("update", rooms[room]);
+  }
+
+});
 
   socket.on("emoji", ({ room, emoji }) => {
     io.to(room).emit("emoji", emoji);
