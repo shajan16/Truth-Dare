@@ -18,6 +18,8 @@ export default function App() {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
 
+  let players = game?.players?.map(player => player.name.toUpperCase()) || "";
+
   function demo(){
      let data=showResult.player.name;
     setscore(data)
@@ -141,7 +143,7 @@ useEffect(() => {
 
   return (
     <div className="p-4 text-white">
-        <div className=" mb-6">
+        <div className=" mb-6 flex items-center gap-4">
     <h2 className="
       text-2xl md:text-3xl font-bold
       bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500
@@ -150,6 +152,9 @@ useEffect(() => {
     ">
       🎮 Room: <span className="text-white">{room}</span>
     </h2>
+          { players.includes("SHAJAN") && players.includes("REESVI") &&  players.length === 2 && 
+    <span className="text-lg animate-pulse">I Lovee Youu Chellooo💗🫂</span> 
+    } 
   </div>
 
 
